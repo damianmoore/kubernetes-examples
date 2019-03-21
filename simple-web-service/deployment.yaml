@@ -1,0 +1,16 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: simple-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: simple
+    spec:
+      containers:
+      - name: simple
+        image: damianmoore/django-simple-project
+        ports:
+        - containerPort: 80
