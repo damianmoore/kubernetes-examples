@@ -18,7 +18,7 @@ service/kubernetes   ClusterIP   10.245.0.1   <none>        443/TCP   4h26m
 We apply the two config files in the `simple-web-service` directory. 
 
 ```
-$ kubectl apply -f simple-web-service
+$ kubectl apply -f simple-web-service.yaml
 deployment.apps/simple-deployment created
 service/simple-service created
 ```
@@ -60,4 +60,11 @@ deployment.apps/simple-deployment   2/2     2            2           3m42s
 
 NAME                                          DESIRED   CURRENT   READY   AGE
 replicaset.apps/simple-deployment-6566784d5   2         2         2       3m42s
+```
+
+When you are finished you can delete the Deployment and Service with the following:
+
+```
+$ kubectl delete service simple-service
+$ kubectl delete deployment simple-deployment
 ```
