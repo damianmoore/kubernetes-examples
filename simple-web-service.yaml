@@ -1,19 +1,24 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: simple-deployment
+  labels:
+    app: simple
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: simple
   template:
     metadata:
       labels:
         app: simple
     spec:
       containers:
-      - name: simple
-        image: damianmoore/django-simple-project
-        ports:
-        - containerPort: 80
+        - name: simple
+          image: damianmoore/django-simple-project
+          ports:
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -22,7 +27,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: 80
+    - protocol: TCP
+      port: 80
       targetPort: 80
   selector:
     app: simple
